@@ -1,9 +1,9 @@
 package com.dev_renan01.sistema_funcionarios_setores.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Setor {
@@ -15,6 +15,8 @@ public class Setor {
     private String nomeSetor;
     private String descricao;
 
+    @OneToMany(mappedBy = "setor")
+    private List<Funcionario> funcionario = new ArrayList<>();
 
     public Long getId() {
         return id;

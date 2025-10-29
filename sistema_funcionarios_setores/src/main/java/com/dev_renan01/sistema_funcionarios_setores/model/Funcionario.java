@@ -1,9 +1,6 @@
 package com.dev_renan01.sistema_funcionarios_setores.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Funcionario {
@@ -16,6 +13,9 @@ public class Funcionario {
     private String cargo;
     private double salario;
 
+    @ManyToOne
+    @JoinColumn(name = "setor_id")
+    private Setor setor;
 
     public String getNome() {
         return nome;

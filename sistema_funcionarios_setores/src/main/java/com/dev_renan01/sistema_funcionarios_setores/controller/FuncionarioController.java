@@ -48,12 +48,8 @@ public class FuncionarioController {
     @ResponseBody
     public ResponseEntity<String> deletarFuncionarioPorId(@RequestParam Long id) {
 
-        if (id == null) {
-            return new ResponseEntity<String>("ID inválido.", HttpStatus.NOT_FOUND);
-
-        } else if (!funcionarioRepository.existsById(id)) {
+         if (!funcionarioRepository.existsById(id)) {
             return new ResponseEntity<String>("Funcionário não encontrado", HttpStatus.NOT_FOUND);
-
         } else{
             funcionarioRepository.deleteById(id);
             return new ResponseEntity<String>("Deletado com sucesso!", HttpStatus.OK);

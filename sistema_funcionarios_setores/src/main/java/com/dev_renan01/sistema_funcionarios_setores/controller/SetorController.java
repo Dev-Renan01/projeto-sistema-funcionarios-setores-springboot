@@ -49,12 +49,11 @@ public class SetorController {
     @DeleteMapping(value = "/deletar")
     @ResponseBody
     public ResponseEntity<String> deletarPorId(@RequestParam Long id){
-        if(id != null){
-            setorRepository.deleteById(id);
 
-            return new ResponseEntity<String>("Deletado com sucesso.", HttpStatus.OK);
-        }else{
-            return new ResponseEntity<String>("Id não encontrado!", HttpStatus.NOT_FOUND);
+        if(!setorRepository.existsById(id)){
+            return new ResponseEntity<String>("Id não encontrado", HttpStatus.NOT_FOUND);
+        } else {
+             return new ResponseEntity<String>("Deletado comm sucesso!", HttpStatus.OK);
         }
     }
 }
