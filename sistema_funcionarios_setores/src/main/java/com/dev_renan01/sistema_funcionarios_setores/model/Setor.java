@@ -1,5 +1,7 @@
 package com.dev_renan01.sistema_funcionarios_setores.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -15,7 +17,8 @@ public class Setor {
     private String nomeSetor;
     private String descricao;
 
-    @OneToMany(mappedBy = "setor")
+    @OneToMany(mappedBy = "setor", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Funcionario> funcionario = new ArrayList<>();
 
     public Long getId() {
@@ -24,6 +27,14 @@ public class Setor {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Funcionario> getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(List<Funcionario> funcionario) {
+        this.funcionario = funcionario;
     }
 
     public String getNomeSetor() {

@@ -53,6 +53,7 @@ public class SetorController {
         if(!setorRepository.existsById(id)){
             return new ResponseEntity<String>("Id não encontrado", HttpStatus.NOT_FOUND);
         } else {
+            setorRepository.deleteById(id);
              return new ResponseEntity<String>("Deletado comm sucesso!", HttpStatus.OK);
         }
     }

@@ -1,5 +1,6 @@
 package com.dev_renan01.sistema_funcionarios_setores.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,9 +15,17 @@ public class Funcionario {
     private double salario;
 
     @ManyToOne
-    @JoinColumn(name = "setor_id")
+    @JoinColumn(name = "setor_id") // cria uma FK numérica
+    @JsonBackReference
     private Setor setor;
 
+    public Setor getSetor() {
+        return setor;
+    }
+
+    public void setSetor(Setor setor) {
+        this.setor = setor;
+    }
     public String getNome() {
         return nome;
     }
